@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -116,7 +115,7 @@ public class DangNhap extends AppCompatActivity {
                             String userEmail = user.getEmail();
                             Intent intent = new Intent(DangNhap.this, TrangChu.class);
                             startActivity(intent);
-                            finish(); // Optional: Finish the current activity to remove it from the back stack
+                            finish();
                             Toast.makeText(DangNhap.this, "Đăng nhập thành công: " + userName, Toast.LENGTH_SHORT).show();
 
                         } else {

@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="1"
+        android:layout_marginTop="10dp"
         android:weightSum="2">
 
         <TextView
@@ -23,7 +24,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="left|center"
-            android:paddingLeft="10dp"
+            android:layout_marginLeft="10dp"
             android:text="Home"
             android:textColor="@color/white"
             android:textColorHighlight="#FFFFFF"
@@ -35,17 +36,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="Sign"
             android:gravity="end">
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_margin="10dp"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="10dp"
                 android:scaleType="fitCenter"
-                android:onClick="Sign"
                 app:srcCompat="@drawable/n3"
+                android:onClick="Sign"
                 tools:ignore="ContentDescription" />
+
         </LinearLayout>
     </LinearLayout>
 

@@ -54,8 +54,6 @@
                     android:textSize="17sp"
                     tools:ignore="HardcodedText,RtlHardcoded,UseCompatTextViewDrawableXml" />
             </RelativeLayout>
-
-
             <View
                 android:id="@+id/rectangle_1"
                 android:layout_width="match_parent"

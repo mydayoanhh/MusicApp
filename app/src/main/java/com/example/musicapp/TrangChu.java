@@ -3,40 +3,74 @@ package com.example.musicapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-import com.example.musicapp.R;
+import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+public class TrangChu extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+    private ImageView imageView; // ImageView for profile image
 
-public class TrangChu extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.trangchu);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        imageView = findViewById(R.id.imageView);
+
+        if (currentUser == null) {
+            // If user is not logged in, handle click event to navigate to login
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(TrangChu.this, DangNhap.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            // If user is logged in, handle click event to navigate to profile
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(TrangChu.this, ProfileActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            if (currentUser == null) {
+                Glide.with(this).load(R.drawable.n3).into(imageView);
+            } else if (getIntent().hasExtra("profileImageUrl")) {
+                String profileImageUrl = getIntent().getStringExtra("profileImageUrl");
+                Glide.with(this).load(profileImageUrl).into(imageView);
+            } else if (currentUser.getPhotoUrl() != null) {
+                // Load Firebase
+                Glide.with(this).load(currentUser.getPhotoUrl()).into(imageView);
+            } else {
+                // User has no profile image, show default image
+                Glide.with(this).load(R.drawable.n3).into(imageView);
+            }
+        }
     }
-    public void search(View view){
-        Intent intent = new Intent(TrangChu.this,Search.class);
+
+    public void search(View view) {
+        Intent intent = new Intent(TrangChu.this, Search.class);
         startActivity(intent);
     }
-    public void thuvien(View view){
-        Intent intent = new Intent(TrangChu.this,ThuVien.class);
+
+    public void thuvien(View view) {
+        Intent intent = new Intent(TrangChu.this, ThuVien.class);
         startActivity(intent);
     }
-    public void Sign(View view){
-        Intent intent = new Intent(TrangChu.this,DangNhap.class);
+
+    public void Sign(View view) {
+        Intent intent = new Intent(TrangChu.this, DangNhap.class);
         startActivity(intent);
     }
 }
