@@ -103,10 +103,12 @@
                                     android:layout_width="170dp"
                                     android:layout_height="170dp"
                                     app:cardCornerRadius="10dp">
+
                                     <ImageView
                                         android:id="@+id/imageView6"
                                         android:layout_width="170dp"
                                         android:layout_height="170dp"
+                                        android:onClick="next"
                                         android:scaleType="fitCenter"
                                         app:srcCompat="@drawable/n4" />
 
@@ -1469,6 +1471,7 @@
                                             android:layout_width="150dp"
                                             android:layout_height="150dp"
                                             android:scaleType="fitCenter"
+                                            android:onClick="next1"
                                             app:srcCompat="@drawable/n5" />
                                     </androidx.cardview.widget.CardView>
                                 </FrameLayout>
@@ -1667,7 +1670,7 @@
                                     android:id="@+id/textView52"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Ai rồi cũng phải"
+                                    android:text="Ai cũng phải bắt đầu từ đâu đó"
                                     android:textColor="@color/white"
                                     android:textSize="18dp"
                                     android:textStyle="bold"

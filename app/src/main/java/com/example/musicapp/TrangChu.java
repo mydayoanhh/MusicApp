@@ -73,4 +73,14 @@ public class TrangChu extends AppCompatActivity {
         Intent intent = new Intent(TrangChu.this, DangNhap.class);
         startActivity(intent);
     }
+
+    public void next(View view) {
+        Intent intent = new Intent(TrangChu.this, SongActivity.class);
+        startActivity(intent);
+    }
+
+    public void next1(View view) {
+        Intent intent = new Intent(TrangChu.this, SongRightPlace.class);
+        startActivity(intent);
+    }
 }
